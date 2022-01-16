@@ -1,6 +1,12 @@
 <?php
 
+
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +19,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/home', [HomeController::class, 'redirect']);
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/about', [HomeController::class, 'about']);
+Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/shop', [HomeController::class, 'shop']);
+
+
+
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+
