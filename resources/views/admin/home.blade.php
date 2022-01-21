@@ -1,7 +1,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
- @include('admin.head')
+    <head>  
+        @include('admin.head')
+    </head>
   <body>
     <div class="container-scroller">
       <div class="row p-0 m-0 proBanner" id="proBanner">

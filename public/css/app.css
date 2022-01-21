@@ -2152,6 +2152,13 @@ select {
   }
 }
 
-h2.pageHeadeing{
+.pageHeadeing{
   padding: 20px;
  }
+
+ 
+.user a.nav-link span {
+  position: absolute;
+  top: 21px;
+  color: cyan;
+}

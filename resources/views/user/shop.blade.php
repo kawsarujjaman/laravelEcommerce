@@ -93,15 +93,77 @@ https://templatemo.com/tm-546-sixteen-clothing
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
-    <div class="banner header-text">
-      <div class="owl-banner owl-carousel">
-        
-       
+      
+  
+    <!-- Banner Ends Here -->
+    <h2 class="pageHeadeing">  Shop </h2>
+   <!-- Latest Products -->
+   <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Shop </h2>
+
+                @if(session()->has('AddCart'))
+                  <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert"> X </button>
+                  {{session()->get('AddCart')}}
+                  </div>
+                @endif
+              
+
+              <form action="{{url('search')}}" class="form-inline float-right p-3" method="get">@csrf
+                  <input type="search" value="Search" name="search" class="form-control ">
+                  <input type="submit" value="Search"  class="btn bg-success  btn-primary">
+                </form>
+
+
+            </div>
+          </div>
+          @foreach($products as $product)
+          <div class="col-md-3">
+            <div class="product-item">
+              <a href="{{url('product', $product->id)}}"><img class="text-center" style="width: 180px; height:200px;" src="/productimage/{{$product->productImage}}" alt=""></a>
+              <div class="down-content">
+                <a href="{{url('product', $product->id)}}"><h4> {{$product->title}} </h4></a>
+                <h6>${{$product->price}}</h6>
+                <p>{{$product->description}}</p>
+
+
+                    <!-- Cart section srart -->
+                <form action="{{url('add-cart', $product->id)}}" method="post">
+                  @csrf
+                  <input type="number" name="quantity" value="1" min="1" class="form-control w-50 mb-3" >
+                  <input class="btn btn-secondary bg-primary" type="submit" value="Add Cart">
+                </form>
+                    <!-- Cart section ends -->
+
+               
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <span>Reviews (24)</span>
+              </div>
+            </div>
+          </div>
+
+          @endforeach
+
+          @if(method_exists($products, 'links'))
+          <div class="d-flex justify-content-center">
+          {!! $products->links() !!}
+          </div>
+          @endif
+        </div>
       </div>
     </div>
-   
-    <h2 class="pageHeadeing">Shop </h2>
-   
+
+     
 
     
      <!--  Footer with script -->

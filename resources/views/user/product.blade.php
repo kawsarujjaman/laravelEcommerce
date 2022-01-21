@@ -3,6 +3,7 @@
 
   <head>
 
+    <base href="/public">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -93,32 +94,39 @@ https://templatemo.com/tm-546-sixteen-clothing
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
-    <div class="banner header-text">
-      <div class="owl-banner owl-carousel">
-        <div class="banner-item-01">
-          <div class="text-content">
-            <h4>Best Offer</h4>
-            <h2>New Arrivals On Sale</h2>
-          </div>
-        </div>
-        <div class="banner-item-02">
-          <div class="text-content">
-            <h4>Flash Deals</h4>
-            <h2>Get your best products</h2>
-          </div>
-        </div>
-        <div class="banner-item-03">
-          <div class="text-content">
-            <h4>Last Minute</h4>
-            <h2>Grab last minute deals</h2>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     <!-- Banner Ends Here -->
 
-   <!-- Latest Products -->
-      @include('user.latestproducts')
+   <!-- Single Product -->
+     <div class="container">
+       <div class="row">
+         <div class="col-md-2"></div>
+        
+         <div class="col-md-8 mt-5">
+           <h1 class="productHeading py-5 mt-5">
+           {{$products->title}}
+           </h1>
+
+           <div class="row">
+             <div class="col-md-6">
+               <div class="product-image">
+                 <img style="width:300px; height:280px" src="/productimage/{{$products->productImage}}" alt="">
+               </div>
+             </div>
+
+             <div class="col-md-6">
+               <h3>
+               {{$products->title}}
+               </h3>
+               <p> {{$products->descriotion}} </p>
+             </div>
+           </div>
+
+         </div>
+         <div class="col-md-2"></div>
+       </div>
+       
+     </div>
 
      
        

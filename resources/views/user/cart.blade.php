@@ -53,7 +53,7 @@ https://templatemo.com/tm-546-sixteen-clothing
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto user">
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="{{'/'}}">Home
                   <span class="sr-only">(current)</span>
@@ -106,58 +106,82 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     
+    
+    <!-- Banner Ends Here -->
     <div class="banner header-text">
       <div class="owl-banner owl-carousel">
-        <div class="banner-item-01">
-          <div class="text-content">
-            <h4>Best Offer</h4>
-            <h2>New Arrivals On Sale</h2>
-          </div>
-        </div>
-        <div class="banner-item-02">
-          <div class="text-content">
-            <h4>Flash Deals</h4>
-            <h2>Get your best products</h2>
-          </div>
-        </div>
-        <div class="banner-item-03">
-          <div class="text-content">
-            <h4>Last Minute</h4>
-            <h2>Grab last minute deals</h2>
-          </div>
-        </div>
+        
       </div>
     </div>
-    <!-- Banner Ends Here -->
+                @if(session()->has('delete'))
+                  <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert"> X </button>
+                  {{session()->get('delete')}}
+                  </div>
+                @endif
+                @if(session()->has('OrderComplete'))
+                  <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert"> X </button>
+                  {{session()->get('OrderComplete')}}
+                  </div>
+                @endif
+   <!-- Show  Products cart-->
+   <h2 class="pageHeadeing"> Cart </h2>
+    
+   <div class="row">
+       <div class="col-md-2"></div>
+       <div class="col-md-10">
+            <table class="table-bordered table-striped table-responsive">
+                <thead>
+                    <tr class="p-2">
+                        <th class="p-2"> Product Name </th>
+                        <th class="p-2"> Product Quantity </th>
+                        <th class="p-2"> Product Price </th>
+                        <th class="p-2">  Action </th>
+                    </tr>
+                </thead>
 
-   <!-- Latest Products -->
-      @include('user.latestproducts')
+                <tbody>
+                    <form action="{{url('order')}}" method="post">
+                        @csrf
+                    @foreach($cart as $carts)
+                    <tr >
+                        <td class="p-2"> 
+                            <input type="text" name="productname[]" value="{{$carts->product_title}}" hidden="">
+                             {{$carts->product_title}}
+                         </td>
+                        <td class="p-2"> <input type="number" name="quantity[]" value="{{$carts->quantity}}" hidden="">
+                         {{$carts->quantity}} 
+                        </td>
 
-       <!-- Feature Products -->
-       @include('user.featureproducts')
+                        <td class="p-2">
+                         <input type="number" name="price[]" value="{{$carts->price}}" hidden="">
+                         {{$carts->price}}                  
+
+                        </td>
+
+                        <td> <a class="btn btn-danger" href="{{url('delete-cart', $carts->id)}}"> Delete </a> </td>
+                    </tr>
+                    @endforeach
+                    
+                </tbody>
+
+              
+            </table>
+            <button  class="btn btn-success bg-success my-2"> Confirm Order </button>
+
+            </form>
+       </div>
+       <div class="col-md-2"></div>
+   </div>
+     
+
+      
+      
 
 
    
-
-    <div class="call-to-action">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <div class="row">
-                <div class="col-md-8">
-                  <h4>Creative &amp; Unique <em>Sixteen</em> Products</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis amet elite author nulla.</p>
-                </div>
-                <div class="col-md-4">
-                  <a href="#" class="filled-button">Purchase Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
     
      <!--  Footer with script -->

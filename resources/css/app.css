@@ -3,3 +3,8 @@
 @import 'tailwindcss/utilities';
 
 
+.user a.nav-link span {
+    position: absolute;
+    top: 21px;
+    color: cyan;
+  }
